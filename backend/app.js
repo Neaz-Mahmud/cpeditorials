@@ -34,4 +34,7 @@ app.get("/api/health", (req, res) => {
   res.json({ success: true, messgae: "cp hub api is running" });
 });
 
+//---API Routes---
+app.use("/api/auth", authRoutes);
+
 export default app;
