@@ -2,6 +2,7 @@ import { Router } from "express";
 import rateLimiter from "express-rate-limit";
 import { registrationSchema } from "../validator/auth.validator";
 import validate from "../middleware/validate";
+import * as authcontroller from "../controller/auth.controller";
 
 const router = Router();
 
@@ -16,4 +17,4 @@ const authLimiter = rateLimit({
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
-router.post("/register", authLimiter, validate(registrationSchema));
+router.post("/register", authLimiter, validate(registrationSchema), authcontroller.register);
