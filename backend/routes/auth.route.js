@@ -1,6 +1,7 @@
 import { Router } from "express";
 import rateLimiter from "express-rate-limit";
 import { registrationSchema } from "../validator/auth.validator";
+import validate from "../middleware/validate";
 
 const router = Router();
 

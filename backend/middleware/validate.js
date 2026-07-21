@@ -9,7 +9,21 @@ const validate = (schema) => {
     });
 
     if (!result.success) {
-      return next();
+      const errors = result.error.issues.map((issue) => ({
+        field: issue.path.join('.'),
+        message: issue.message,
+
+      }));
+
+      return next(new ApiError(400, "Validation failed", errors));
+
     }
+
+    req.body = result.data.body ?? req.body;
+    req.params = result.data.params ?? req.params;
+    req.query = result.data.query ?? req.query;
+    next();
   };
 };
+
+export default validate;
