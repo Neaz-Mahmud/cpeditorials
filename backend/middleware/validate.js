@@ -10,13 +10,11 @@ const validate = (schema) => {
 
     if (!result.success) {
       const errors = result.error.issues.map((issue) => ({
-        field: issue.path.join('.'),
+        field: issue.path.join("."),
         message: issue.message,
-
       }));
 
       return next(new ApiError(400, "Validation failed", errors));
-
     }
 
     req.body = result.data.body ?? req.body;

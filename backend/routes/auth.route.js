@@ -17,4 +17,9 @@ const authLimiter = rateLimit({
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
-router.post("/register", authLimiter, validate(registrationSchema), authcontroller.register);
+router.post(
+  "/register",
+  authLimiter,
+  validate(registrationSchema),
+  authcontroller.register,
+);

@@ -1,10 +1,8 @@
+export const register = (req, res, next) => {
 
 
 
-
-
-export const register=(req,res,next)=>{
-
+  const {refreshToken,accessToken}=
 
 
 };
