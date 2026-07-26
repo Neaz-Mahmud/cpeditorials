@@ -1,4 +1,4 @@
-import User from "../models/user.model.js";
+import User from '../model/user.model.js'
 import ApiError from "../utils/ApiError.js";
 import { TOKEN_TYPE } from "../utils/constant.js";
 import jwt from 'jsonwebtoken'
@@ -22,10 +22,10 @@ export const generateTokenpair = async (user) => {
   const refreshToken = generateToken(user.__id, TOKEN_TYPE.REFRESH_TOKEN);
 
 
-    user.refreshToken=refreshToken;
-    await user.save({validateBeforeSave:false});
+  user.refreshToken = refreshToken;
+  await user.save({ validateBeforeSave: false });
 
-  return {accessToken,refreshToken};
+  return { accessToken, refreshToken };
 
 
 };
@@ -42,5 +42,5 @@ export const registerUser = async (data) => {
 
   const user = await User.create({ username, email, password, handle, bio });
 
-  return { user, accessToken,refreshToken } = await generateTokenpair(user);
+  return { user, accessToken, refreshToken } = await generateTokenpair(user);
 };

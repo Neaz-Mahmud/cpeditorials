@@ -1,6 +1,7 @@
 
 import * as autser from '../Services/auth.service.js'
 import dotenv from 'dotenv'
+import ApiResponse, { sendResponse } from '../utils/apiResponse.js';
 
 dotenv.config();
 
@@ -57,6 +58,11 @@ export const register = async (req, res, next) => {
   setRefreshTokenCookie(res, refreshToken);
 
 
+  sendResponse(res, 201, {
+    user,
+    accessToken
+  },
+    'User Registered Sucessfully');
 
 
 

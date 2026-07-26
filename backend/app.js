@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 //local package
 import { env } from "./config/env.js";
 
+
 const app = express();
 app.use(helmet());
 
@@ -35,6 +36,7 @@ app.get("/api/health", (req, res) => {
 });
 
 //---API Routes---
+import authRoutes from './routes/auth.route.js'
 app.use("/api/auth", authRoutes);
 
 export default app;
