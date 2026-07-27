@@ -1,4 +1,4 @@
-import logger from "../utils/logger";
+import logger from "../utils/logger.js";
 const errorHandler = (err, req, res, next) => {
   // Log the full error for developers (always — even in production, logs
   // should capture everything for debugging)

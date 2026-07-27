@@ -5,6 +5,7 @@ import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
+import errorHandler from "./middleware/error.js";
 
 //local package
 import { env } from "./config/env.js";
@@ -38,5 +39,9 @@ app.get("/api/health", (req, res) => {
 //---API Routes---
 import authRoutes from './routes/auth.route.js'
 app.use("/api/auth", authRoutes);
+
+
+
+app.use(errorHandler)
 
 export default app;

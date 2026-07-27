@@ -17,9 +17,9 @@ const validate = (schema) => {
       return next(new ApiError(400, "Validation failed", errors));
     }
 
-    req.body = result.data.body ?? req.body;
-    req.params = result.data.params ?? req.params;
-    req.query = result.data.query ?? req.query;
+    if (req.body) req.body = result.data.body ?? req.body;
+    if (req.params) Object.assign(req.params, result.data.params);
+    if (req.query) Object.assign(req.query, result.data.query);
     next();
   };
 };

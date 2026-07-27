@@ -2,6 +2,7 @@
 import * as autser from '../Services/auth.service.js'
 import dotenv from 'dotenv'
 import ApiResponse, { sendResponse } from '../utils/apiResponse.js';
+import { asyncHandler } from '../utils/asyncHandler.js';
 
 dotenv.config();
 
@@ -14,7 +15,7 @@ const DURATION_UNITS_MS = {
 
 
 const refreshTokenMaxAgeMs = () => {
-  const expiry = String(env.JWT_REFRESH_EXPIRY).trim();
+  const expiry = String(process.env.JWT_REFRESH_EXPIRY).trim();
 
   // Bare number → seconds, per the jsonwebtoken contract.
   if (/^\d+$/.test(expiry)) {
@@ -42,14 +43,14 @@ const REFRESH_COOKIE_OPTIONS = {
 
 const setRefreshTokenCookie = (res, refreshToken) => {
 
-  res.cookie(REFRESH_TOKEN_COOKIE, refreshToken, {
+  res.cookie("REFRESH_TOKEN_COOKIE", refreshToken, {
     ...REFRESH_COOKIE_OPTIONS,
     maxAge: refreshTokenMaxAgeMs(),
   })
 
 }
 
-export const register = async (req, res, next) => {
+export const register = asyncHandler(async (req, res, next) => {
 
 
 
@@ -66,4 +67,6 @@ export const register = async (req, res, next) => {
 
 
 
-};
+});
+
+
