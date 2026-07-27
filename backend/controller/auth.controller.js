@@ -1,10 +1,10 @@
 
+import { env } from '../config/env.js';
 import * as autser from '../Services/auth.service.js'
-import dotenv from 'dotenv'
+
 import ApiResponse, { sendResponse } from '../utils/apiResponse.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 
-dotenv.config();
 
 const DURATION_UNITS_MS = {
   s: 1000,
@@ -36,7 +36,7 @@ const refreshTokenMaxAgeMs = () => {
 const REFRESH_COOKIE_OPTIONS = {
   httpOnly: true,
   sameSite: 'strict',
-  secure: process.env.NODE_ENV === 'production',
+  secure: env.NODE_ENV === 'production',
   path: '/'
 
 }

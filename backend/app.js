@@ -39,6 +39,11 @@ app.get("/api/health", (req, res) => {
 //---API Routes---
 import authRoutes from './routes/auth.route.js'
 app.use("/api/auth", authRoutes);
+app.use(express.json({ limit: "16kb" }));
+
+app.use(express.urlencoded({ extended: true, limit: "16kb" }));
+
+app.use(cookieParser());
 
 
 
